@@ -1,0 +1,20 @@
+<%- include('../shared/header') %>
+
+<a href="/blogs/create">➕ Create Blog</a>
+
+<ul>
+  <% blogs.forEach(blog => { %>
+    <li>
+      <strong><%= blog.title %></strong>
+      <br>
+      <a href="/blogs/<%= blog.id %>">View</a>
+      <a href="/blogs/edit/<%= blog.id %>">Edit</a>
+      <form action="/blogs/delete/<%= blog.id %>" method="POST" style="display:inline;">
+        <button>Delete</button>
+      </form>
+    </li>
+    <br>
+  <% }) %>
+</ul>
+
+<%- include('../shared/footer') %>
