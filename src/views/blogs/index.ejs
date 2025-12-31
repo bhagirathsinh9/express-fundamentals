@@ -1,20 +1,27 @@
 <%- include('../shared/header') %>
 
-<a href="/blogs/create">➕ Create Blog</a>
+<a href="/blogs/create">➕Create Blog</a>
 
-<ul>
-  <% blogs.forEach(blog => { %>
-    <li>
-      <strong><%= blog.title %></strong>
+
+<% if (blogs && blogs.length > 0) { %>
+  <ul>
+    <% blogs.forEach(blog => { %>
+      <li style=" width:max-content; padding: 5px;">
+        <strong><%= blog.title %></strong>
+        <br>
+
+        <a href="/blogs/<%= blog.id %>">View</a>
+        <a href="/blogs/edit/<%= blog.id %>" >Edit</a>
+
+        <form action="/blogs/delete/<%= blog.id %>" method="POST" style="display:inline;">
+          <button>Delete</button>
+        </form>
+      </li>
       <br>
-      <a href="/blogs/<%= blog.id %>">View</a>
-      <a href="/blogs/edit/<%= blog.id %>">Edit</a>
-      <form action="/blogs/delete/<%= blog.id %>" method="POST" style="display:inline;">
-        <button>Delete</button>
-      </form>
-    </li>
-    <br>
-  <% }) %>
-</ul>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p style="color: red;">No blogs available</p>
+<% } %>
 
 <%- include('../shared/footer') %>
