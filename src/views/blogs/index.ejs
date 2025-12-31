@@ -1,27 +1,57 @@
 <%- include('../shared/header') %>
 
-<a href="/blogs/create">➕Create Blog</a>
+<div class="min-h-screen flex flex-col items-center justify-start pt-10">
 
+  <!-- Create Blog Button -->
+  <div class="mb-6">
+    <a
+      href="/blogs/create"
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-2 rounded-full"
+    >
+      Create Blog
+    </a>
+  </div>
 
-<% if (blogs && blogs.length > 0) { %>
-  <ul>
-    <% blogs.forEach(blog => { %>
-      <li style=" width:max-content; padding: 5px;">
-        <strong><%= blog.title %></strong>
-        <br>
+  <% if (blogs && blogs.length > 0) { %>
+    <!-- GRID CONTAINER -->
+    <ul class="
+      grid 
+      grid-cols-1 
+      sm:grid-cols-2 
+      lg:grid-cols-3 
+      gap-6
+      place-items-center
+    ">
+      <% blogs.forEach(blog => { %>
+        <li class="bg-gray-100 shadow-xl rounded p-4 text-center w-[300px]">
 
-        <a href="/blogs/<%= blog.id %>">View</a>
-        <a href="/blogs/edit/<%= blog.id %>" >Edit</a>
+          <strong class="block text-lg mb-2">
+            <%= blog.title %>
+          </strong>
 
-        <form action="/blogs/delete/<%= blog.id %>" method="POST" style="display:inline;">
-          <button>Delete</button>
-        </form>
-      </li>
-      <br>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p style="color: red;">No blogs available</p>
-<% } %>
+          <div class="flex justify-center gap-4">
+            <a href="/blogs/<%= blog.id %>" class="text-blue-500 hover:underline">
+              View
+            </a>
+
+            <a href="/blogs/edit/<%= blog.id %>" class="text-green-500 hover:underline">
+              Edit
+            </a>
+
+            <form action="/blogs/delete/<%= blog.id %>" method="POST">
+              <button class="text-red-500 hover:underline">
+                Delete
+              </button>
+            </form>
+          </div>
+
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="text-red-500 text-lg">No blogs available</p>
+  <% } %>
+
+</div>
 
 <%- include('../shared/footer') %>

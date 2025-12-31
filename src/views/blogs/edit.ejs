@@ -1,13 +1,48 @@
 <%- include('../shared/header') %>
 
-<h2>Edit Blog</h2>
+<div class="min-h-screen flex items-center justify-center px-4">
 
-<form action="/blogs/update/<%= blog.id %>" method="POST">
-  <input type="text" name="title" value="<%= blog.title %>" required />
-  <br><br>
-  <textarea name="content" required><%= blog.content %></textarea>
-  <br><br>
-  <button>Update</button>
-</form>
+  <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-md">
+
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">
+      Edit Blog
+    </h2>
+
+    <form action="/blogs/update/<%= blog.id %>" method="POST" class="space-y-4">
+
+      <input
+        type="text"
+        name="title"
+        value="<%= blog.title %>"
+        required
+        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+
+      <textarea
+        name="content"
+        required
+        rows="5"
+        class="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+      ><%= blog.content %></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded"
+      >
+        Update
+      </button>
+
+    </form>
+
+    <a
+      href="/blogs"
+      class="block text-center mt-4 text-blue-500 hover:underline"
+    >
+      ⬅ Back to Blogs
+    </a>
+
+  </div>
+
+</div>
 
 <%- include('../shared/footer') %>
