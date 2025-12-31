@@ -15,11 +15,14 @@ exports.getBlogById = (req, res) => {
 }
 
 exports.createBlog = (req, res) => {
-  blogs.push({
-    id: id++,
-    title: req.body.title,
-    content: req.body.content,
-  })
+  const { title, content, image } = req.body;
+
+blogs.push({
+  id: Date.now(),
+  title,
+  content,
+  image   
+});
   return res.redirect('/blogs')
 }
 
@@ -27,6 +30,7 @@ exports.updateBlog = (req, res) => {
   const blog = blogs.find((b) => b.id === Number(req.params.id))
   blog.title = req.body.title
   blog.content = req.body.content
+  blog.image = req.body.image
   res.redirect('/blogs')
 }
 

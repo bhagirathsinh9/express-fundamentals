@@ -10,6 +10,16 @@
 
     <form action="/blogs/update/<%= blog.id %>" method="POST" class="space-y-4">
 
+      <!-- Existing Image Preview -->
+      <% if (blog.image) { %>
+        <img
+          src="<%= blog.image %>"
+          alt="Blog Image"
+          class="w-full h-40 object-cover rounded"
+        />
+      <% } %>
+
+      <!-- Title -->
       <input
         type="text"
         name="title"
@@ -18,6 +28,7 @@
         class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
       />
 
+      <!-- Content -->
       <textarea
         name="content"
         required
@@ -25,6 +36,16 @@
         class="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
       ><%= blog.content %></textarea>
 
+      <!-- Image URL -->
+      <input
+        type="text"
+        name="image"
+        value="<%= blog.image || '' %>"
+        placeholder="Image URL"
+        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+
+      <!-- Update Button -->
       <button
         type="submit"
         class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded"
